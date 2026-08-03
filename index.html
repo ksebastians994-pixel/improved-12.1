@@ -135,11 +135,33 @@
         .tier-hero { color: #c084fc; }
         .tier-myth { color: #fb923c; font-weight: bold; }
 
+        /* Anpassung für 2-Spalten-Layout bei Boss Cards */
         .video-links {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
             margin: 20px 0;
+        }
+
+        /* Neue Klasse für ein responsives 16:9 YouTube Video */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Format */
+            height: 0;
+            overflow: hidden;
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ff3333;
+            box-shadow: 0 0 10px rgba(204, 0, 0, 0.4);
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         a {
@@ -150,15 +172,12 @@
             align-items: center;
             gap: 10px;
         }
-        a:hover { text-decoration: underline; }
         
+        a:hover { text-decoration: underline; }
         ul { padding-left: 20px; }
         li { margin-bottom: 8px; }
 
-        @media (max-width: 1000px) {
-            .video-links { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 600px) {
+        @media (max-width: 900px) {
             .video-links { grid-template-columns: 1fr !important; }
         }
 
@@ -178,7 +197,7 @@
             justify-content: flex-start;
             position: relative;
             overflow: hidden;
-            min-height: 200px;
+            min-height: 400px;
         }
         
         .boss-card::before {
@@ -234,9 +253,6 @@
             backdrop-filter: blur(4px);
         }
         
-        .btn-video { border: 1px solid #ff3333; box-shadow: 0 0 10px rgba(204, 0, 0, 0.4); }
-        .btn-video:hover { background-color: rgba(204, 0, 0, 0.8); transform: translateY(-2px); box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); }
-        
         .btn-text { border: 1px solid #f59e0b; box-shadow: 0 0 10px rgba(217, 119, 6, 0.4); }
         .btn-text:hover { background-color: rgba(217, 119, 6, 0.8); transform: translateY(-2px); box-shadow: 0 0 15px rgba(245, 158, 11, 0.6); }
 
@@ -273,14 +289,16 @@
         
         <h3>▶️ Raid-Boss Videoguides</h3>
         <p>Hier sind die direkten Links zu den Taktiken für jeden Boss (Ready-Check-Pull: YouTube):</p>
+        
         <div class="video-links">
-            
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/nekzali.webp');">
                 <div class="boss-card-content">
                     <div class="boss-card-header">Nek'zali</div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/W2zNL31Ly-A?start=21" title="Nek'zali Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <div class="guide-btn-group">
-                        <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=21s" target="_blank" class="btn-guide btn-video">▶ Video Guide (00:21)</a>
-                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-nekzali-the-soulcoiler-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-nekzali-the-soulcoiler-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide lesen</a>
                     </div>
                 </div>
             </div>
@@ -288,9 +306,11 @@
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/entombed-sentinels.webp');">
                 <div class="boss-card-content">
                     <div class="boss-card-header">Entombed Sentinels</div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/W2zNL31Ly-A?start=66" title="Entombed Sentinels Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <div class="guide-btn-group">
-                        <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=66s" target="_blank" class="btn-guide btn-video">▶ Video Guide (01:06)</a>
-                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-entombed-sentinels-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-entombed-sentinels-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide lesen</a>
                     </div>
                 </div>
             </div>
@@ -298,9 +318,11 @@
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/Vashnik.webp');">
                 <div class="boss-card-content">
                     <div class="boss-card-header">Vashnik</div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/W2zNL31Ly-A?start=130" title="Vashnik Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <div class="guide-btn-group">
-                        <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=130s" target="_blank" class="btn-guide btn-video">▶ Video Guide (02:10)</a>
-                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-vashnik-the-malignant-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-vashnik-the-malignant-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide lesen</a>
                     </div>
                 </div>
             </div>
@@ -308,9 +330,11 @@
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/Morzahi.webp');">
                 <div class="boss-card-content">
                     <div class="boss-card-header">The Lost Explorers</div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/W2zNL31Ly-A?start=214" title="The Lost Explorers Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <div class="guide-btn-group">
-                        <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=214s" target="_blank" class="btn-guide btn-video">▶ Video Guide (03:34)</a>
-                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-lost-explorers-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-lost-explorers-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide lesen</a>
                     </div>
                 </div>
             </div>
@@ -318,9 +342,11 @@
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/sszorak.webp');">
                 <div class="boss-card-content">
                     <div class="boss-card-header">Sszorak</div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/W2zNL31Ly-A?start=276" title="Sszorak Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <div class="guide-btn-group">
-                        <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=276s" target="_blank" class="btn-guide btn-video">▶ Video Guide (04:36)</a>
-                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-sszorak-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-sszorak-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide lesen</a>
                     </div>
                 </div>
             </div>
@@ -328,9 +354,11 @@
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/Die-Zwielingsfaenge.webp');">
                 <div class="boss-card-content">
                     <div class="boss-card-header">The Twin Fangs</div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/W2zNL31Ly-A?start=342" title="The Twin Fangs Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <div class="guide-btn-group">
-                        <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=342s" target="_blank" class="btn-guide btn-video">▶ Video Guide (05:42)</a>
-                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-twin-fangs-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-twin-fangs-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide lesen</a>
                     </div>
                 </div>
             </div>
@@ -338,9 +366,11 @@
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/The-Coiled-Altar_.webp');">
                 <div class="boss-card-content">
                     <div class="boss-card-header">The Coiled Altar</div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/W2zNL31Ly-A?start=397" title="The Coiled Altar Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <div class="guide-btn-group">
-                        <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=397s" target="_blank" class="btn-guide btn-video">▶ Video Guide (06:37)</a>
-                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-coiled-altar-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-coiled-altar-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide lesen</a>
                     </div>
                 </div>
             </div>
@@ -348,13 +378,14 @@
             <div class="boss-card" style="background-image: url('https://warcraft.wiki.gg/images/Ula%27tek.jpg');">
                 <div class="boss-card-content">
                     <div class="boss-card-header">Ula'tek</div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/W2zNL31Ly-A?start=501" title="Ula'tek Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <div class="guide-btn-group">
-                        <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=501s" target="_blank" class="btn-guide btn-video">▶ Video Guide (08:21)</a>
-                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-ulatek-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                        <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-ulatek-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide lesen</a>
                     </div>
                 </div>
             </div>
-
         </div>
         
         <h3>T-Set-Drops nach Boss</h3>
