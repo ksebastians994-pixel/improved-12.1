@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+/* Author Machtra */
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved 12.1: Midnight Saison 2 Übersicht</title>
+    <style>
+        :root {
+            --bg-main: #0f1115;
+            --bg-card: #1c1f26;
+            --text-main: #d1d5db;
+            --accent-gold: #ffd100;
+            --accent-orange: #ff8000;
+            --accent-purple: #a335ee;
+            --accent-blue: #0070dd;
+            --accent-green: #1eff00;
+            --border-color: #333;
+            
+            /* Table specific colors */
+            --color-green: rgba(30, 255, 0, 0.15);
+            --color-blue: rgba(0, 112, 221, 0.15);
+            --color-purple: rgba(163, 53, 238, 0.15);
+            --color-red: rgba(255, 0, 0, 0.2);
+            --color-gold: rgba(255, 209, 0, 0.2);
+            --color-mythic: rgba(255, 128, 0, 0.25);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        /* IMPORTANT: Use dynamic width to prevent horizontal scrolling */
+        .container {
+            width: 95%;
+            max-width: 1600px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 30px 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-gold);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        h1 { text-align: center; text-transform: uppercase; font-size: 2.2em; margin-top: 10px; }
+        
+        /* MEGA TABLE STYLES (No Horizontal Scroll) */
+        .mega-table {
+            width: 100%;
+            table-layout: fixed; /* Forces table to fit within container */
+            border-collapse: collapse;
+            font-size: 0.75rem; /* Smaller font to fit data */
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .mega-table th, .mega-table td {
+            border: 1px solid #444;
+            padding: 6px 4px;
+            text-align: center;
+            vertical-align: middle;
+            word-wrap: break-word; /* Let text wrap */
+            hyphens: auto;
+        }
+
+        .mega-table .header-main th {
+            background-color: #111;
+            color: var(--accent-gold);
+            font-weight: bold;
+            font-size: 0.95rem;
+            padding: 8px 4px;
+        }
+        
+        .mega-table .header-sub th {
+            background-color: #222;
+            color: #ddd;
+            font-size: 0.8rem;
+            padding: 6px 2px;
+        }
+
+        .th-jagd { background-color: rgba(255, 209, 0, 0.1) !important; color: #ffd100 !important; }
+        .th-tiefen { background-color: rgba(163, 53, 238, 0.1) !important; color: #a335ee !important; }
+        .th-dungeons { background-color: rgba(0, 112, 221, 0.1) !important; color: #0070dd !important; }
+        .th-raids { background-color: rgba(255, 0, 0, 0.1) !important; color: #ff4c4c !important; }
+
+        .tier-col {
+            font-weight: bold;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        .tier-col-header {
+            width: 30px;
+        }
+
+        .bg-green { background-color: var(--color-green); color: var(--accent-green); }
+        .bg-blue { background-color: var(--color-blue); color: var(--accent-blue); }
+        .bg-purple { background-color: var(--color-purple); color: var(--accent-purple); }
+        .bg-red { background-color: var(--color-red); color: #ff4c4c; }
+        .bg-gold { background-color: var(--color-gold); color: var(--accent-gold); }
+        .bg-mythic { background-color: var(--color-mythic); color: var(--accent-orange); }
+        
+        .crafted-col { background-color: rgba(255, 255, 255, 0.03); font-style: italic; color: #bbb; }
+
+        
+        .tier-veteran { color: var(--accent-green); }
+        .tier-champion { color: var(--accent-blue); }
+        .tier-hero { color: var(--accent-purple); }
+        .tier-myth { color: var(--accent-orange); font-weight: bold; }
+
+        /* Basic Table for Raid and M+ */
+        .basic-table {
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: rgba(0,0,0,0.3);
+        }
+        .basic-table th, .basic-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+        .basic-table th {
+            background-color: rgba(255, 209, 0, 0.1);
+            color: var(--accent-gold);
+        }
+
+        .video-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .video-link-card {
+            background: #2a2e38;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: left;
+            border-left: 4px solid var(--accent-orange);
+            transition: transform 0.2s;
+        }
+
+        .video-link-card:hover {
+            transform: scale(1.02);
+            background: #323742;
+        }
+
+        a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        a:hover { text-decoration: underline; }
+        
+        .boss-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-orange);
+            object-fit: cover;
+            box-shadow: 0 0 5px rgba(255, 128, 0, 0.5);
+        }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+
+        
+        
+        @media (max-width: 1000px) {
+            .video-links { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 600px) {
+            .video-links { grid-template-columns: 1fr !important; }
+        }
+
+        /* Boss Guide Cards Redesign */
+        .boss-card {
+            background: #2a2e38;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 4px solid var(--accent-orange);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .boss-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 1.25em;
+            font-weight: bold;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+        }
+        .boss-icon-large {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-orange);
+            object-fit: cover;
+            box-shadow: 0 0 8px rgba(255, 128, 0, 0.6);
+        }
+        .guide-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .btn-guide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none !important;
+            transition: all 0.2s;
+            color: white !important;
+            font-size: 1.05em;
+        }
+        .btn-video {
+            background: linear-gradient(135deg, #cc0000, #990000);
+            border: 1px solid #ff3333;
+            box-shadow: 0 2px 5px rgba(204, 0, 0, 0.3);
+        }
+        .btn-video:hover {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
+        }
+        .btn-text {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            border: 1px solid #f59e0b;
+            box-shadow: 0 2px 5px rgba(217, 119, 6, 0.3);
+        }
+        .btn-text:hover {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Buttons */
+        .btn-container { text-align: center; margin: 30px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .btn-custom {
+            display: inline-flex; justify-content: center; align-items: center;
+            color: white !important;
+            padding: 15px 35px; font-size: 1.1em; font-weight: bold;
+            text-transform: uppercase; border-radius: 8px;
+            text-decoration: none; transition: all 0.3s ease; letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-wowutils {
+            background: linear-gradient(135deg, #a335ee, #7a00cc);
+            box-shadow: 0 4px 15px rgba(163, 53, 238, 0.4);
+            border: 1px solid #c875ff;
+        }
+        .btn-wowutils:hover {
+            background: linear-gradient(135deg, #b854ff, #8e00ed);
+            transform: translateY(-3px); box-shadow: 0 6px 25px rgba(163, 53, 238, 0.6);
+        }
+        
+        .btn-toggle {
+            background: linear-gradient(135deg, #0070dd, #004499);
+            box-shadow: 0 4px 15px rgba(0, 112, 221, 0.4);
+            border: 1px solid #3399ff;
+        }
+        .btn-toggle:hover {
+            background: linear-gradient(135deg, #3399ff, #0055cc);
+            transform: translateY(-3px); box-shadow: 0 6px 25px rgba(0, 112, 221, 0.6);
+        }
+
+    </style>
+
+    <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: false};</script>
+    <script src="https://wow.zamimg.com/js/tooltips.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Improved 12.1: Midnight Saison 2 Infos von Machtra</h1>
+        
+        <div class="btn-container">
+            <a href="https://wowutils.com/viserio-cooldowns/planning?groupId=67c5b8c491462ab1b080131e" target="_blank" class="btn-custom btn-wowutils">
+                🛡️ Zur Raid Assignments und Cooldown-Planung (WoW Utils)
+            </a>
+            
+
+        </div>
+
+        <h2>⚔️ Raid: Der Giftige Abgrund (The Venomous Abyss)</h2>
+        
+        <h3>▶️ Raid-Boss Videoguides</h3>
+        <p>Hier sind die direkten Links zu den Taktiken für jeden Boss (Ready-Check-Pull: YouTube):</p>
+        <div class="video-links">
+            <div class="boss-card">
+                <div class="boss-card-header">
+                    <img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowfury.jpg" alt="Nek'zali" class="boss-icon-large"> Nek'zali
+                </div>
+                <div class="guide-btn-group">
+                    <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=21s" target="_blank" class="btn-guide btn-video">▶ Video Guide (00:21)</a>
+                    <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-nekzali-the-soulcoiler-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                </div>
+            </div>
+            
+            <div class="boss-card">
+                <div class="boss-card-header">
+                    <img src="https://wow.zamimg.com/images/wow/icons/large/ability_golem_thunderclap.jpg" alt="The Entombed Sentinels" class="boss-icon-large"> Entombed Sentinels
+                </div>
+                <div class="guide-btn-group">
+                    <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=66s" target="_blank" class="btn-guide btn-video">▶ Video Guide (01:06)</a>
+                    <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-entombed-sentinels-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                </div>
+            </div>
+            
+            <div class="boss-card">
+                <div class="boss-card-header">
+                    <img src="https://wow.zamimg.com/images/wow/icons/large/spell_nature_poisoncleansingtotem.jpg" alt="Vashnik" class="boss-icon-large"> Vashnik
+                </div>
+                <div class="guide-btn-group">
+                    <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=130s" target="_blank" class="btn-guide btn-video">▶ Video Guide (02:10)</a>
+                    <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-vashnik-the-malignant-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                </div>
+            </div>
+            
+            <div class="boss-card">
+                <div class="boss-card-header">
+                    <img src="https://wow.zamimg.com/images/wow/icons/large/achievement_character_dwarf_male.jpg" alt="The Lost Explorers" class="boss-icon-large"> The Lost Explorers
+                </div>
+                <div class="guide-btn-group">
+                    <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=214s" target="_blank" class="btn-guide btn-video">▶ Video Guide (03:34)</a>
+                    <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-lost-explorers-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                </div>
+            </div>
+            
+            <div class="boss-card">
+                <div class="boss-card-header">
+                    <img src="https://wow.zamimg.com/images/wow/icons/large/inv_misc_monsterhead_03.jpg" alt="Sszorak" class="boss-icon-large"> Sszorak
+                </div>
+                <div class="guide-btn-group">
+                    <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=276s" target="_blank" class="btn-guide btn-video">▶ Video Guide (04:36)</a>
+                    <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-sszorak-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                </div>
+            </div>
+            
+            <div class="boss-card">
+                <div class="boss-card-header">
+                    <img src="https://wow.zamimg.com/images/wow/icons/large/ability_hunter_pet_snake.jpg" alt="The Twin Fangs" class="boss-icon-large"> The Twin Fangs
+                </div>
+                <div class="guide-btn-group">
+                    <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=342s" target="_blank" class="btn-guide btn-video">▶ Video Guide (05:42)</a>
+                    <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-twin-fangs-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                </div>
+            </div>
+            
+            <div class="boss-card">
+                <div class="boss-card-header">
+                    <img src="https://wow.zamimg.com/images/wow/icons/large/inv_jewelcrafting_dragonseye05.jpg" alt="The Coiled Altar" class="boss-icon-large"> The Coiled Altar
+                </div>
+                <div class="guide-btn-group">
+                    <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=397s" target="_blank" class="btn-guide btn-video">▶ Video Guide (06:37)</a>
+                    <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-coiled-altar-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                </div>
+            </div>
+            
+            <div class="boss-card">
+                <div class="boss-card-header">
+                    <img src="https://wow.zamimg.com/images/wow/icons/large/spell_shadow_demonicempathy.jpg" alt="Ula'tek" class="boss-icon-large"> Ula'tek
+                </div>
+                <div class="guide-btn-group">
+                    <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=501s" target="_blank" class="btn-guide btn-video">▶ Video Guide (08:21)</a>
+                    <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-ulatek-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
+                </div>
+            </div>
+        </div>
+        
+        <h3>T-Set-Drops nach Boss</h3>
+        <table class="basic-table" style="min-width: 400px;">
+            <thead>
+                <tr>
+                    <th>Boss</th>
+                    <th>Rüstungsslot (Armor Slot)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>The Entombed Sentinels</td><td>Hände (Hands)</td></tr>
+                <tr><td>The Lost Explorers</td><td>Schultern (Shoulders)</td></tr>
+                <tr><td>Vashnik the Malignant</td><td>Brust (Chest)</td></tr>
+                <tr><td>Sszorak</td><td>Beine (Legs)</td></tr>
+                <tr><td>The Twin Fangs</td><td>Kopf (Helm)</td></tr>
+                <tr><td>Ula'tek</td><td>Beliebig (Any)</td></tr>
+            </tbody>
+        </table>
+        
+        <hr style="border-color: #333; margin: 40px 0;">
+
+        
+        <div class="btn-container" style="margin-top: 50px; margin-bottom: 25px;">
+            <button id="toggleViewBtn" class="btn-custom btn-toggle" style="width: 100%; max-width: 500px; padding: 12px 20px;">
+                 Vollständige Tabelle einblenden
+            </button>
+        </div>
+        <!-- TOGGLEABLE SECTION: SIMPLE TABLES -->
+
+        <div id="simple-view">
+            <h3>Item-Level & Belohnungen (Raid)</h3>
+            
+        <table class="basic-table" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Schwierigkeit</th>
+                    <th>Boss 1</th>
+                    <th>Bosse 2-3</th>
+                    <th>Bosse 4-6</th>
+                    <th>Bosse 7-8</th>
+                    <th>Wappen (Crests)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LFR</td>
+                    <td class="tier-veteran">279 (Vet 1/6)</td>
+                    <td class="tier-veteran">282 (Vet 2/6)</td>
+                    <td class="tier-veteran">285 (Vet 3/6)</td>
+                    <td class="tier-veteran">289 (Vet 4/6)</td>
+                    <td class="tier-veteran"><a href='https://www.wowhead.com/search?q=Veteran+Mistcrest' target='_blank' style='color:var(--accent-green); text-decoration: underline dotted;'>Veteran Mistcrest</a></td>
+                </tr>
+                <tr>
+                    <td>Normal</td>
+                    <td class="tier-champion">292 (Champ 1/6)</td>
+                    <td class="tier-champion">295 (Champ 2/6)</td>
+                    <td class="tier-champion">298 (Champ 3/6)</td>
+                    <td class="tier-champion">302 (Champ 4/6)</td>
+                    <td class="tier-champion"><a href='https://www.wowhead.com/search?q=Champion+Mistcrest' target='_blank' style='color:var(--accent-blue); text-decoration: underline dotted;'>Champion Mistcrest</a></td>
+                </tr>
+                <tr>
+                    <td>Heroisch (Heroic)</td>
+                    <td class="tier-hero">305 (Hero 1/6)</td>
+                    <td class="tier-hero">308 (Hero 2/6)</td>
+                    <td class="tier-hero">311 (Hero 3/6)</td>
+                    <td class="tier-hero">315 (Hero 4/6)</td>
+                    <td class="tier-hero"><a href='https://www.wowhead.com/search?q=Hero+Mistcrest' target='_blank' style='color:var(--accent-purple); text-decoration: underline dotted;'>Hero Mistcrest</a></td>
+                </tr>
+                <tr>
+                    <td>Mythisch (Mythic)</td>
+                    <td class="tier-myth">318 (Myth 1/6)</td>
+                    <td class="tier-myth">321 (Myth 2/6)</td>
+                    <td class="tier-myth">324 (Myth 3/6)</td>
+                    <td class="tier-myth">344</td>
+                    <td class="tier-myth"><a href='https://www.wowhead.com/search?q=Myth+Mistcrest' target='_blank' style='color:var(--accent-orange); text-decoration: underline dotted;'>Myth Mistcrest</a></td>
+                </tr>
+            </tbody>
+        </table>
+    
+            
+            <h2 style="margin-top: 40px;">⏱️ Mythisch+ (Dungeons) Gegenstandsstufen</h2>
+            
+        <table class="basic-table" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>M+ Stufe</th>
+                    <th>End-of-Dungeon Drop</th>
+                    <th>Große Schatzkammer (Vault)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Mythisch 0 (M0)</td><td class="tier-champion">292</td><td class="tier-champion">302</td></tr>
+                <tr><td>M+ 2-3</td><td class="tier-champion">295</td><td class="tier-hero">305</td></tr>
+                <tr><td>M+ 4</td><td class="tier-champion">298</td><td class="tier-hero">308</td></tr>
+                <tr><td>M+ 5</td><td class="tier-champion">302</td><td class="tier-hero">308</td></tr>
+                <tr><td>M+ 6</td><td class="tier-hero">305</td><td class="tier-hero">311</td></tr>
+                <tr><td>M+ 7</td><td class="tier-hero">305</td><td class="tier-hero">315</td></tr>
+                <tr><td>M+ 8-9</td><td class="tier-hero">308</td><td class="tier-hero">315</td></tr>
+                <tr><td>M+ 10 oder höher</td><td class="tier-hero">311</td><td class="tier-myth">318</td></tr>
+            </tbody>
+        </table>
+    
+        </div>
+
+        <!-- TOGGLEABLE SECTION: MEGA TABLE -->
+        <div id="mega-view" style="display: none;">
+            <h2 style="margin-top: 0;"> Alle Item-Level & Quellen</h2>
+            <p style="color: #aaa; margin-bottom: 25px;"><em>Vollständige Übersicht für Season 2 (Patch 12.1).</em></p>
+            
+        <table class="mega-table">
+            <thead>
+                <tr class="header-main">
+                    <th rowspan="2" class="tier-col-header">Tier</th>
+                    <th rowspan="2" style="width: 5%;">ILvl</th>
+                    <th rowspan="2">PvP<br><span style="font-size:0.8em">(Arena/BG)</span></th>
+                    <th rowspan="2">Quests &<br>Welt-Aktivitäten</th>
+                    <th rowspan="2">Hergestellte<br>Ausrüstung</th>
+                    <th rowspan="2">Venomstone<br>Bonus</th>
+                    <th colspan="2" class="th-jagd">JAGD</th>
+                    <th colspan="3" class="th-tiefen">TIEFEN</th>
+                    <th colspan="2" class="th-dungeons">DUNGEONS</th>
+                    <th colspan="2" class="th-raids">RAIDS</th>
+                </tr>
+                <tr class="header-sub">
+                    <th class="th-jagd">Jagdstufen</th>
+                    <th class="th-jagd">Große<br>Schatzkammer</th>
+                    <th class="th-tiefen">Prall gefüllte<br>Truhen</th>
+                    <th class="th-tiefen">Schatzjäger-<br>Beute</th>
+                    <th class="th-tiefen">Große<br>Schatzkammer</th>
+                    <th class="th-dungeons">Mythisch+<br>Dungeons</th>
+                    <th class="th-dungeons">Große<br>Schatzkammer</th>
+                    <th class="th-raids">Schlachtzug</th>
+                    <th class="th-raids">Große<br>Schatzkammer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Nicht Aufwertbar -->
+                <tr>
+                    <td rowspan="4" class="tier-col bg-green">NICHT<br>AUFWERTBAR</td>
+                    <td>201-214</td>
+                    <td></td>
+                    <td>Levelkampagne & Nebenquests</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>256</td>
+                    <td></td>
+                    <td>Patch-12.1-Kampagne</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>259</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td>Normal / Anhänger</td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>263</td>
+                    <td>Ehre (331)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+
+                <!-- Abenteurer -->
+                <tr>
+                    <td rowspan="4" class="tier-col bg-blue">ABENTEURER</td>
+                    <td>266</td>
+                    <td></td>
+                    <td rowspan="4">Weltquests</td>
+                    <td></td>
+                    <td>Normal</td>
+                    <td></td>
+                    <td>Tier 1</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>269</td>
+                    <td></td><td></td><td></td><td></td><td>Tier 2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>272</td>
+                    <td></td><td></td><td></td><td></td><td>Tier 3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>276</td>
+                    <td></td><td></td><td></td><td></td><td>Tier 4</td><td></td><td></td><td>Heroisch</td><td></td><td></td><td></td><td></td>
+                </tr>
+
+                <!-- Veteran -->
+                <tr>
+                    <td rowspan="4" class="tier-col bg-purple">VETERAN</td>
+                    <td>279</td>
+                    <td></td>
+                    <td>Weltboss / Gewölbe</td>
+                    <td></td>
+                    <td>Schwer</td>
+                    <td>Normal</td>
+                    <td>Tier 5</td>
+                    <td></td>
+                    <td>Tier 1</td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>282</td>
+                    <td></td><td></td><td></td><td></td><td></td><td>Tier 6</td><td>Tier 4</td><td>Tier 2</td><td></td><td></td><td></td>
+                    <td>LFR</td><td></td>
+                </tr>
+                <tr>
+                    <td>285</td>
+                    <td></td>
+                    <td>Spitzenkiste</td>
+                    <td></td><td></td><td></td><td></td><td></td><td>Tier 3</td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>289</td>
+                    <td>Kriegsmodus (331)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td>Tier 5</td><td>Tier 4</td><td></td><td>Heroisch</td><td></td><td></td><td></td>
+                </tr>
+
+                <!-- Champion -->
+                <tr>
+                    <td rowspan="4" class="tier-col bg-red">CHAMPION</td>
+                    <td>292</td>
+                    <td>Eroberung (344)</td>
+                    <td>Weltboss (Normal)</td>
+                    <td rowspan="4" class="crafted-col">Funke der Gezeiten</td>
+                    <td>Albtraum</td>
+                    <td>Schwer</td>
+                    <td>Tier 7</td>
+                    <td>Tier 6</td>
+                    <td>Tier 6</td>
+                    <td>Tier 5</td>
+                    <td>Mythisch / M0</td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>295</td>
+                    <td></td><td></td><td></td><td></td><td>Tier 8-11</td><td>Tier 7</td><td></td><td></td><td>M+2-3</td><td></td><td>Normal</td><td>LFR</td>
+                </tr>
+                <tr>
+                    <td>298</td>
+                    <td></td><td></td><td></td><td></td><td></td><td>Tier 8</td><td></td><td></td><td>M+4</td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>302</td>
+                    <td></td><td></td><td></td><td></td><td></td><td>Tier 8</td><td></td><td></td><td>M+5</td><td>Mythisch</td><td></td><td></td>
+                </tr>
+
+                <!-- Held -->
+                <tr>
+                    <td rowspan="4" class="tier-col bg-gold">HELD</td>
+                    <td>305</td>
+                    <td></td>
+                    <td>Weltboss (Heroisch)</td>
+                    <td rowspan="4" class="crafted-col">+80 Heldenwappen</td>
+                    <td>Albtraum</td>
+                    <td>Reise 9 (Tier 11)</td>
+                    <td>Tier 8-11</td>
+                    <td>Tier 8-11</td>
+                    <td>Tier 8-11</td>
+                    <td>Tier 8-11</td>
+                    <td>M+6-7</td>
+                    <td>M+2-3</td>
+                    <td>Heroisch</td>
+                    <td>Normal</td>
+                </tr>
+                <tr>
+                    <td>308</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>M+8-9</td><td>M+4-5</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>311</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>M+10 oder höher</td><td>M+6</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>315</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>M+7-9</td><td></td><td></td>
+                </tr>
+
+                <!-- Mythos -->
+                <tr>
+                    <td rowspan="9" class="tier-col bg-mythic">MYTHIC</td>
+                    <td>318</td>
+                    <td></td>
+                    <td>Weltboss (Mythisch)</td>
+                    <td rowspan="9" class="crafted-col">+80 Mythoswappen</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>M+10 oder höher</td><td></td><td>Heroisch</td>
+                </tr>
+                <tr><td>321</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr>
+                    <td>324</td>
+                    <td></td><td></td><td>Aufgestiegene Helden-Herstellung</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>328</td>
+                    <td></td><td></td><td>Aufgestiegener Held</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr><td>331</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr>
+                    <td>334</td>
+                    <td></td><td></td><td>Aufgestiegene Mythos-Herstellung</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Größtenteils Mythisch</td><td></td>
+                </tr>
+                <tr><td>337</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr>
+                    <td>341</td>
+                    <td></td><td></td><td>Aufgestiegener Mythos</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>344</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Letzte 2 Boss</td><td>Letzte 2 Boss</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        </div>
+        
+        <hr style="border-color: #333; margin: 40px 0;">
+
+        <h2>⚙️ Wichtige System-Änderungen</h2>
+        <ul>
+            <li><strong>Nebulöse Leerenkerne:</strong> Ab sofort durch Vault (statt Sockel etc.). Bonusrolls für Schlachtzugsbeute kosten jetzt einen (statt zwei). Ab Woche 8 gibt es einen Händler durch den man Bonusrolls auch aus anderen Quellen erhalten kann.</li>
+            <li><strong>Aufsteigende Giftsteine:</strong> Werten Waffen, Schmuckstücke und Halsketten bis zum Äquivalent Mythisch 6/8 auf.</li>
+            <li><strong>Schatzkammer Raids:</strong> LFR, Normal und Heroisch droppen auf höheren Aufwertungsstufen. Mythisch droppt auf 6/6.</li>
+            <li><strong>Seltene Raid-Drops:</strong> "Sehr seltene" Beute aus dem mythischen Schwierigkeitsgrad und Endboss-Beute droppen auf dem Äquivalent von Mythisch 6/9.</li>
+            <li><strong>Katalysator:</strong> Klassenset-Rüstungen übernehmen nun die Sekundärwerte und behalten Effekte des Original-Gegenstands.</li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('toggleViewBtn').addEventListener('click', function() {
+            var simpleView = document.getElementById('simple-view');
+            var megaView = document.getElementById('mega-view');
+            
+            if (megaView.style.display === 'none') {
+                // Switch to Mega View
+                megaView.style.display = 'block';
+                simpleView.style.display = 'none';
+                this.innerHTML = '⚔️ Zurück zu nur Raid & M+';
+                this.style.background = 'linear-gradient(135deg, #ff4c4c, #cc0000)';
+                this.style.borderColor = '#ff6666';
+                this.style.boxShadow = '0 4px 15px rgba(255, 76, 76, 0.4)';
+            } else {
+                // Switch to Simple View
+                megaView.style.display = 'none';
+                simpleView.style.display = 'block';
+                this.innerHTML = '📊 Vollständige Mega-Tabelle anzeigen';
+                this.style.background = 'linear-gradient(135deg, #0070dd, #004499)';
+                this.style.borderColor = '#3399ff';
+                this.style.boxShadow = '0 4px 15px rgba(0, 112, 221, 0.4)';
+            }
+        });
+    </script>
+</body>
+</html>
