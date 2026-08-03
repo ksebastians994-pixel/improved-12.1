@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -22,14 +21,6 @@
             --accent-blue: #0070dd;
             --accent-green: #1eff00;
             --border-color: #333;
-            
-            /* Table specific colors */
-            --color-green: rgba(30, 255, 0, 0.15);
-            --color-blue: rgba(0, 112, 221, 0.15);
-            --color-purple: rgba(163, 53, 238, 0.15);
-            --color-red: rgba(255, 0, 0, 0.2);
-            --color-gold: rgba(255, 209, 0, 0.2);
-            --color-mythic: rgba(255, 128, 0, 0.25);
         }
         
         body {
@@ -41,7 +32,6 @@
             line-height: 1.5;
         }
 
-        /* IMPORTANT: Use dynamic width to prevent horizontal scrolling */
         .container {
             width: 95%;
             max-width: 1600px;
@@ -63,70 +53,66 @@
 
         h1 { text-align: center; text-transform: uppercase; font-size: 2.2em; margin-top: 10px; }
         
-        /* TABLE STYLES (No Horizontal Scroll) */
-        .mega-table {
+        /* MEGA TABLE STYLES (Bild 1 Design) */
+        .table-container {
             width: 100%;
-            table-layout: fixed; /* Forces table to fit within container */
+            overflow-x: auto;
+        }
+
+        .mega-table {
             border-collapse: collapse;
-            font-size: 0.75rem; /* Smaller font to fit data */
-            background-color: rgba(0,0,0,0.5);
+            width: 100%;
+            font-size: 13px;
+            background-color: #0d1117;
+            table-layout: fixed;
         }
 
         .mega-table th, .mega-table td {
-            border: 1px solid #444;
-            padding: 6px 4px;
+            border: 1px solid #30363d;
+            padding: 10px 6px;
             text-align: center;
             vertical-align: middle;
-            word-wrap: break-word; /* Let text wrap */
+            word-wrap: break-word;
             hyphens: auto;
+            color: #c9d1d9;
         }
 
-        .mega-table .header-main th {
-            background-color: #111;
-            color: var(--accent-gold);
-            font-weight: bold;
-            font-size: 0.95rem;
-            padding: 8px 4px;
-        }
+        .mega-table th { font-weight: bold; }
         
-        .mega-table .header-sub th {
-            background-color: #222;
-            color: #ddd;
-            font-size: 0.8rem;
-            padding: 6px 2px;
-        }
-
-        .th-jagd { background-color: rgba(255, 209, 0, 0.1) !important; color: #ffd100 !important; }
-        .th-tiefen { background-color: rgba(163, 53, 238, 0.1) !important; color: #a335ee !important; }
-        .th-dungeons { background-color: rgba(0, 112, 221, 0.1) !important; color: #0070dd !important; }
-        .th-raids { background-color: rgba(255, 0, 0, 0.1) !important; color: #ff4c4c !important; }
+        .hdr-yellow { color: #ffd100 !important; }
+        .hdr-jagd { color: #ffd100 !important; background-color: rgba(200, 160, 0, 0.15) !important; }
+        .hdr-tiefen { color: #d884ff !important; background-color: rgba(163, 53, 238, 0.15) !important; }
+        .hdr-dungeons { color: #3399ff !important; background-color: rgba(0, 112, 221, 0.15) !important; }
+        .hdr-raids { color: #ff4c4c !important; background-color: rgba(255, 0, 0, 0.15) !important; }
 
         .tier-col {
             font-weight: bold;
             writing-mode: vertical-rl;
-            text-orientation: mixed;
             transform: rotate(180deg);
-            letter-spacing: 2px;
             text-align: center;
-        }
-        .tier-col-header {
-            width: 30px;
+            letter-spacing: 2px;
+            width: 40px;
+            padding: 0;
         }
 
-        .bg-green { background-color: var(--color-green); color: var(--accent-green); }
-        .bg-blue { background-color: var(--color-blue); color: var(--accent-blue); }
-        .bg-purple { background-color: var(--color-purple); color: var(--accent-purple); }
-        .bg-red { background-color: var(--color-red); color: #ff4c4c; }
-        .bg-gold { background-color: var(--color-gold); color: var(--accent-gold); }
-        .bg-mythic { background-color: var(--color-mythic); color: var(--accent-orange); }
-        
-        .crafted-col { background-color: rgba(255, 255, 255, 0.03); font-style: italic; color: #bbb; }
+        /* Hintergrundfarben für die Tier-Blöcke */
+        .bg-green { background-color: #1a4d2e !important; color: #4ade80 !important; }
+        .bg-blue { background-color: #1e3a5f !important; color: #60a5fa !important; }
+        .bg-purple { background-color: #3b2853 !important; color: #c084fc !important; }
+        .bg-red { background-color: #5c1c1c !important; color: #f87171 !important; }
+        .bg-gold { background-color: #665014 !important; color: #facc15 !important; }
+        .bg-mythic { background-color: #663300 !important; color: #fb923c !important; }
 
+        .ilvl-main { font-size: 14px; }
+        .track-text { font-size: 10px; color: #8b949e; display: block; margin-top: 4px; }
         
-        .tier-veteran { color: var(--accent-green); }
-        .tier-champion { color: var(--accent-blue); }
-        .tier-hero { color: var(--accent-purple); }
-        .tier-myth { color: var(--accent-orange); font-weight: bold; }
+        .c-adv { color: #60a5fa; }
+        .c-vet { color: #4ade80; }
+        .c-champ { color: #60a5fa; }
+        .c-hero { color: #c084fc; }
+        .c-myth { color: #fb923c; }
+
+        .italic-text { font-style: italic; color: #aaa; }
 
         /* Basic Table for Raid and M+ */
         .basic-table {
@@ -144,25 +130,16 @@
             color: var(--accent-gold);
         }
 
+        .tier-veteran { color: #4ade80; }
+        .tier-champion { color: #60a5fa; }
+        .tier-hero { color: #c084fc; }
+        .tier-myth { color: #fb923c; font-weight: bold; }
+
         .video-links {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             margin: 20px 0;
-        }
-
-        .video-link-card {
-            background: #2a2e38;
-            padding: 15px;
-            border-radius: 6px;
-            text-align: left;
-            border-left: 4px solid var(--accent-orange);
-            transition: transform 0.2s;
-        }
-
-        .video-link-card:hover {
-            transform: scale(1.02);
-            background: #323742;
         }
 
         a {
@@ -178,8 +155,6 @@
         ul { padding-left: 20px; }
         li { margin-bottom: 8px; }
 
-        
-        
         @media (max-width: 1000px) {
             .video-links { grid-template-columns: repeat(2, 1fr) !important; }
         }
@@ -187,9 +162,9 @@
             .video-links { grid-template-columns: 1fr !important; }
         }
 
-        /* Boss Guide Cards Redesign - WITH BACKGROUND IMAGES */
+        /* Boss Guide Cards */
         .boss-card {
-            background-color: #1a1a24; /* Fallback color */
+            background-color: #1a1a24;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -203,10 +178,9 @@
             justify-content: flex-start;
             position: relative;
             overflow: hidden;
-            min-height: 200px; /* Give it some height for the background to show */
+            min-height: 200px;
         }
         
-        /* Dark overlay to make text readable */
         .boss-card::before {
             content: "";
             position: absolute;
@@ -217,7 +191,7 @@
 
         .boss-card-content {
             position: relative;
-            z-index: 2; /* Put content above the overlay */
+            z-index: 2;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -241,7 +215,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-top: auto; /* Push buttons to the bottom of the card */
+            margin-top: auto;
         }
         
         .btn-guide {
@@ -260,25 +234,11 @@
             backdrop-filter: blur(4px);
         }
         
-        .btn-video {
-            border: 1px solid #ff3333;
-            box-shadow: 0 0 10px rgba(204, 0, 0, 0.4);
-        }
-        .btn-video:hover {
-            background-color: rgba(204, 0, 0, 0.8);
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-        }
+        .btn-video { border: 1px solid #ff3333; box-shadow: 0 0 10px rgba(204, 0, 0, 0.4); }
+        .btn-video:hover { background-color: rgba(204, 0, 0, 0.8); transform: translateY(-2px); box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); }
         
-        .btn-text {
-            border: 1px solid #f59e0b;
-            box-shadow: 0 0 10px rgba(217, 119, 6, 0.4);
-        }
-        .btn-text:hover {
-            background-color: rgba(217, 119, 6, 0.8);
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
-        }
+        .btn-text { border: 1px solid #f59e0b; box-shadow: 0 0 10px rgba(217, 119, 6, 0.4); }
+        .btn-text:hover { background-color: rgba(217, 119, 6, 0.8); transform: translateY(-2px); box-shadow: 0 0 15px rgba(245, 158, 11, 0.6); }
 
         /* Buttons */
         .btn-container { text-align: center; margin: 30px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
@@ -291,30 +251,12 @@
             cursor: pointer;
             border: none;
         }
-        .btn-wowutils {
-            background: linear-gradient(135deg, #a335ee, #7a00cc);
-            box-shadow: 0 4px 15px rgba(163, 53, 238, 0.4);
-            border: 1px solid #c875ff;
-        }
-        .btn-wowutils:hover {
-            background: linear-gradient(135deg, #b854ff, #8e00ed);
-            transform: translateY(-3px); box-shadow: 0 6px 25px rgba(163, 53, 238, 0.6);
-        }
+        .btn-wowutils { background: linear-gradient(135deg, #a335ee, #7a00cc); box-shadow: 0 4px 15px rgba(163, 53, 238, 0.4); border: 1px solid #c875ff; }
+        .btn-wowutils:hover { background: linear-gradient(135deg, #b854ff, #8e00ed); transform: translateY(-3px); box-shadow: 0 6px 25px rgba(163, 53, 238, 0.6); }
         
-        .btn-toggle {
-            background: linear-gradient(135deg, #0070dd, #004499);
-            box-shadow: 0 4px 15px rgba(0, 112, 221, 0.4);
-            border: 1px solid #3399ff;
-        }
-        .btn-toggle:hover {
-            background: linear-gradient(135deg, #3399ff, #0055cc);
-            transform: translateY(-3px); box-shadow: 0 6px 25px rgba(0, 112, 221, 0.6);
-        }
-
+        .btn-toggle { background: linear-gradient(135deg, #0070dd, #004499); box-shadow: 0 4px 15px rgba(0, 112, 221, 0.4); border: 1px solid #3399ff; }
+        .btn-toggle:hover { background: linear-gradient(135deg, #3399ff, #0055cc); transform: translateY(-3px); box-shadow: 0 6px 25px rgba(0, 112, 221, 0.6); }
     </style>
-
-    <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: false};</script>
-    <script src="https://wow.zamimg.com/js/tooltips.js"></script>
 </head>
 
 <body>
@@ -325,8 +267,6 @@
             <a href="https://wowutils.com/viserio-cooldowns/planning?groupId=67c5b8c491462ab1b080131e" target="_blank" class="btn-custom btn-wowutils">
                 🛡️ Zur Raid Assignments und Cooldown-Planung (WoW Utils)
             </a>
-            
-
         </div>
 
         <h2>⚔️ Raid: Der Giftige Abgrund (The Venomous Abyss)</h2>
@@ -337,9 +277,7 @@
             
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/nekzali.webp');">
                 <div class="boss-card-content">
-                    <div class="boss-card-header">
-                        Nek'zali
-                    </div>
+                    <div class="boss-card-header">Nek'zali</div>
                     <div class="guide-btn-group">
                         <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=21s" target="_blank" class="btn-guide btn-video">▶ Video Guide (00:21)</a>
                         <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-nekzali-the-soulcoiler-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
@@ -349,9 +287,7 @@
             
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/entombed-sentinels.webp');">
                 <div class="boss-card-content">
-                    <div class="boss-card-header">
-                        Entombed Sentinels
-                    </div>
+                    <div class="boss-card-header">Entombed Sentinels</div>
                     <div class="guide-btn-group">
                         <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=66s" target="_blank" class="btn-guide btn-video">▶ Video Guide (01:06)</a>
                         <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-entombed-sentinels-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
@@ -361,9 +297,7 @@
             
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/Vashnik.webp');">
                 <div class="boss-card-content">
-                    <div class="boss-card-header">
-                        Vashnik
-                    </div>
+                    <div class="boss-card-header">Vashnik</div>
                     <div class="guide-btn-group">
                         <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=130s" target="_blank" class="btn-guide btn-video">▶ Video Guide (02:10)</a>
                         <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-vashnik-the-malignant-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
@@ -373,9 +307,7 @@
             
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/Morzahi.webp');">
                 <div class="boss-card-content">
-                    <div class="boss-card-header">
-                        The Lost Explorers
-                    </div>
+                    <div class="boss-card-header">The Lost Explorers</div>
                     <div class="guide-btn-group">
                         <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=214s" target="_blank" class="btn-guide btn-video">▶ Video Guide (03:34)</a>
                         <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-lost-explorers-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
@@ -385,9 +317,7 @@
             
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/sszorak.webp');">
                 <div class="boss-card-content">
-                    <div class="boss-card-header">
-                        Sszorak
-                    </div>
+                    <div class="boss-card-header">Sszorak</div>
                     <div class="guide-btn-group">
                         <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=276s" target="_blank" class="btn-guide btn-video">▶ Video Guide (04:36)</a>
                         <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-sszorak-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
@@ -397,9 +327,7 @@
             
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/Die-Zwielingsfaenge.webp');">
                 <div class="boss-card-content">
-                    <div class="boss-card-header">
-                        The Twin Fangs
-                    </div>
+                    <div class="boss-card-header">The Twin Fangs</div>
                     <div class="guide-btn-group">
                         <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=342s" target="_blank" class="btn-guide btn-video">▶ Video Guide (05:42)</a>
                         <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-twin-fangs-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
@@ -409,9 +337,7 @@
             
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/The-Coiled-Altar_.webp');">
                 <div class="boss-card-content">
-                    <div class="boss-card-header">
-                        The Coiled Altar
-                    </div>
+                    <div class="boss-card-header">The Coiled Altar</div>
                     <div class="guide-btn-group">
                         <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=397s" target="_blank" class="btn-guide btn-video">▶ Video Guide (06:37)</a>
                         <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-coiled-altar-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
@@ -421,9 +347,7 @@
             
             <div class="boss-card" style="background-image: url('https://warcraft.wiki.gg/images/Ula%27tek.jpg');">
                 <div class="boss-card-content">
-                    <div class="boss-card-header">
-                        Ula'tek
-                    </div>
+                    <div class="boss-card-header">Ula'tek</div>
                     <div class="guide-btn-group">
                         <a href="https://www.youtube.com/watch?v=W2zNL31Ly-A&t=501s" target="_blank" class="btn-guide btn-video">▶ Video Guide (08:21)</a>
                         <a href="https://www.wowhead.com/guide/midnight/raids/venomous-abyss-ulatek-boss-strategy-abilities" target="_blank" class="btn-guide btn-text">📖 WoWHead Guide</a>
@@ -452,15 +376,14 @@
         </table>
         
         <hr style="border-color: #333; margin: 40px 0;">
-
         
         <div class="btn-container" style="margin-top: 50px; margin-bottom: 25px;">
             <button id="toggleViewBtn" class="btn-custom btn-toggle" style="width: 100%; max-width: 500px; padding: 12px 20px;">
                  Vollständige Tabelle einblenden
             </button>
         </div>
-        <!-- TOGGLEABLE SECTION: SIMPLE TABLES -->
 
+        <!-- TOGGLEABLE SECTION: SIMPLE TABLES -->
         <div id="simple-view">
             <h3>Item-Level & Belohnungen (Raid)</h3>
             
@@ -471,7 +394,7 @@
                     <th>Boss 1</th>
                     <th>Bosse 2-3</th>
                     <th>Bosse 4-6</th>
-                    <th>Bosse 7-8</th>
+                    <th>Bosse 7-8 / Super Rare</th>
                     <th>Wappen (Crests)</th>
                 </tr>
             </thead>
@@ -482,7 +405,7 @@
                     <td class="tier-veteran">282 (Vet 2/6)</td>
                     <td class="tier-veteran">285 (Vet 3/6)</td>
                     <td class="tier-veteran">289 (Vet 4/6)</td>
-                    <td class="tier-veteran"><a href='https://www.wowhead.com/search?q=Veteran+Mistcrest' target='_blank' style='color:var(--accent-green); text-decoration: underline dotted;'>Veteran Mistcrest</a></td>
+                    <td class="tier-veteran">Veteran Mistcrest</td>
                 </tr>
                 <tr>
                     <td>Normal</td>
@@ -490,7 +413,7 @@
                     <td class="tier-champion">295 (Champ 2/6)</td>
                     <td class="tier-champion">298 (Champ 3/6)</td>
                     <td class="tier-champion">302 (Champ 4/6)</td>
-                    <td class="tier-champion"><a href='https://www.wowhead.com/search?q=Champion+Mistcrest' target='_blank' style='color:var(--accent-blue); text-decoration: underline dotted;'>Champion Mistcrest</a></td>
+                    <td class="tier-champion">Champion Mistcrest</td>
                 </tr>
                 <tr>
                     <td>Heroisch (Heroic)</td>
@@ -498,7 +421,7 @@
                     <td class="tier-hero">308 (Hero 2/6)</td>
                     <td class="tier-hero">311 (Hero 3/6)</td>
                     <td class="tier-hero">315 (Hero 4/6)</td>
-                    <td class="tier-hero"><a href='https://www.wowhead.com/search?q=Hero+Mistcrest' target='_blank' style='color:var(--accent-purple); text-decoration: underline dotted;'>Hero Mistcrest</a></td>
+                    <td class="tier-hero">Hero Mistcrest</td>
                 </tr>
                 <tr>
                     <td>Mythisch (Mythic)</td>
@@ -506,11 +429,10 @@
                     <td class="tier-myth">321 (Myth 2/6)</td>
                     <td class="tier-myth">324 (Myth 3/6)</td>
                     <td class="tier-myth">344 (Myth 9/6)</td>
-                    <td class="tier-myth"><a href='https://www.wowhead.com/search?q=Myth+Mistcrest' target='_blank' style='color:var(--accent-orange); text-decoration: underline dotted;'>Myth Mistcrest</a></td>
+                    <td class="tier-myth">Myth Mistcrest</td>
                 </tr>
             </tbody>
         </table>
-    
             
             <h2 style="margin-top: 40px;">⏱️ Mythisch+ (Dungeons) Gegenstandsstufen</h2>
             
@@ -533,7 +455,6 @@
                 <tr><td>M+ 10 oder höher</td><td class="tier-hero">311</td><td class="tier-myth">318</td></tr>
             </tbody>
         </table>
-    
         </div>
 
         <!-- TOGGLEABLE SECTION: MEGA TABLE -->
@@ -541,209 +462,275 @@
             <h2 style="margin-top: 0;"> Alle Item-Level & Quellen</h2>
             <p style="color: #aaa; margin-bottom: 25px;"><em>Vollständige Übersicht für Season 2 (Patch 12.1).</em></p>
             
-        <table class="mega-table">
-            <thead>
-                <tr class="header-main">
-                    <th rowspan="2" class="tier-col-header">Tier</th>
-                    <th rowspan="2" style="width: 5%;">ILvl</th>
-                    <th rowspan="2">PvP<br><span style="font-size:0.8em">(Arena/BG)</span></th>
-                    <th rowspan="2">Quests &<br>Welt-Aktivitäten</th>
-                    <th rowspan="2">Hergestellte<br>Ausrüstung</th>
-                    <th rowspan="2">Venomstone<br>Bonus</th>
-                    <th colspan="2" class="th-jagd">JAGD</th>
-                    <th colspan="3" class="th-tiefen">TIEFEN</th>
-                    <th colspan="2" class="th-dungeons">DUNGEONS</th>
-                    <th colspan="2" class="th-raids">RAIDS</th>
-                </tr>
-                <tr class="header-sub">
-                    <th class="th-jagd">Jagdstufen</th>
-                    <th class="th-jagd">Große<br>Schatzkammer</th>
-                    <th class="th-tiefen">Prall gefüllte<br>Truhen</th>
-                    <th class="th-tiefen">Schatzjäger-<br>Beute</th>
-                    <th class="th-tiefen">Große<br>Schatzkammer</th>
-                    <th class="th-dungeons">Mythisch+<br>Dungeons</th>
-                    <th class="th-dungeons">Große<br>Schatzkammer</th>
-                    <th class="th-raids">Schlachtzug</th>
-                    <th class="th-raids">Große<br>Schatzkammer</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Nicht Aufwertbar -->
-                <tr>
-                    <td rowspan="4" class="tier-col bg-green">NICHT<br>AUFWERTBAR</td>
-                    <td>201-214</td>
-                    <td></td>
-                    <td>Levelkampagne & Nebenquests</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>256</td>
-                    <td></td>
-                    <td>Patch-12.1-Kampagne</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>259</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                    <td>Normal / Anhänger</td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>263</td>
-                    <td>Ehre (331)</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
+            <div class="table-container">
+                <table class="mega-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" class="hdr-yellow">Tier</th>
+                            <th rowspan="2" class="hdr-yellow" style="width: 7%;">ILvl</th>
+                            <th rowspan="2" class="hdr-yellow">PvP<br><span style="font-size: 10px; font-weight: normal;">(Arena/BG)</span></th>
+                            <th rowspan="2" class="hdr-yellow">Quests &<br>Welt-<br>Aktivitäten</th>
+                            <th rowspan="2" class="hdr-yellow">Hergestellte<br>Ausrüstung</th>
+                            <th rowspan="2" class="hdr-yellow">Venomstone<br>Bonus</th>
+                            <th colspan="2" class="hdr-jagd">JAGD</th>
+                            <th colspan="3" class="hdr-tiefen">TIEFEN</th>
+                            <th colspan="2" class="hdr-dungeons">DUNGEONS</th>
+                            <th colspan="2" class="hdr-raids">RAIDS</th>
+                        </tr>
+                        <tr>
+                            <th class="hdr-jagd">Jagdstufen</th>
+                            <th class="hdr-jagd">Große<br>Schatzkammer</th>
+                            <th class="hdr-tiefen">Prall gefüllte<br>Truhen</th>
+                            <th class="hdr-tiefen">Schatzjäger-<br>Beute</th>
+                            <th class="hdr-tiefen">Große<br>Schatzkammer</th>
+                            <th class="hdr-dungeons">Mythisch+<br>Dungeons</th>
+                            <th class="hdr-dungeons">Große<br>Schatzkammer</th>
+                            <th class="hdr-raids">Schlachtzug</th>
+                            <th class="hdr-raids">Große<br>Schatzkammer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- NICHT AUFWERTBAR -->
+                        <tr>
+                            <td rowspan="4" class="tier-col bg-green">NICHT<br>AUFWERTBAR</td>
+                            <td class="ilvl-main">201-214</td>
+                            <td></td>
+                            <td>Levelkampagne<br>& Nebenquests</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td class="ilvl-main">256</td>
+                            <td></td>
+                            <td>Patch-12.1-<br>Kampagne</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td class="ilvl-main">259</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>Normal /<br>Anhänger</td>
+                            <td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td class="ilvl-main">263</td>
+                            <td>Ehre (331)</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
 
-                <!-- Abenteurer -->
-                <tr>
-                    <td rowspan="4" class="tier-col bg-blue">ABENTEURER</td>
-                    <td>266</td>
-                    <td></td>
-                    <td rowspan="4">Weltquests</td>
-                    <td></td>
-                    <td>Normal</td>
-                    <td></td>
-                    <td>Tier 1</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>269</td>
-                    <td></td><td></td><td></td><td></td><td>Tier 2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>272</td>
-                    <td></td><td></td><td></td><td></td><td>Tier 3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>276</td>
-                    <td></td><td></td><td></td><td></td><td>Tier 4</td><td></td><td></td><td>Heroisch</td><td></td><td></td><td></td><td></td>
-                </tr>
+                        <!-- ABENTEURER -->
+                        <tr>
+                            <td rowspan="4" class="tier-col bg-blue">ABENTEURER</td>
+                            <td><span class="ilvl-main">266</span><span class="track-text">Adv 1/6</span></td>
+                            <td></td>
+                            <td rowspan="4">Weltquests</td>
+                            <td></td><td></td>
+                            <td>Normal</td>
+                            <td></td>
+                            <td>Tier 1</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">269</span><span class="track-text">Adv 2/6</span></td>
+                            <td></td><td></td><td></td><td></td><td></td>
+                            <td>Tier 2</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">272</span><span class="track-text">Adv 3/6</span></td>
+                            <td></td><td></td><td></td><td></td><td></td>
+                            <td>Tier 3</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">276</span><span class="track-text">Adv 4/6</span></td>
+                            <td></td><td></td><td></td><td></td><td></td>
+                            <td>Tier 4</td>
+                            <td></td><td></td>
+                            <td>Heroisch</td>
+                            <td></td><td></td><td></td>
+                        </tr>
 
-                <!-- Veteran -->
-                <tr>
-                    <td rowspan="4" class="tier-col bg-purple">VETERAN</td>
-                    <td>279</td>
-                    <td></td>
-                    <td>Weltboss / Gewölbe</td>
-                    <td></td>
-                    <td>Schwer</td>
-                    <td>Normal</td>
-                    <td>Tier 5</td>
-                    <td></td>
-                    <td>Tier 1</td>
-                    <td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>282</td>
-                    <td></td><td></td><td></td><td></td><td></td><td>Tier 6</td><td>Tier 4</td><td>Tier 2</td><td></td><td></td><td></td>
-                    <td>LFR</td><td></td>
-                </tr>
-                <tr>
-                    <td>285</td>
-                    <td></td>
-                    <td>Spitzenkiste</td>
-                    <td></td><td></td><td></td><td></td><td></td><td>Tier 3</td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>289</td>
-                    <td>Kriegsmodus (331)</td>
-                    <td></td><td></td><td></td><td></td><td></td><td>Tier 5</td><td>Tier 4</td><td></td><td>Heroisch</td><td></td><td></td><td></td>
-                </tr>
+                        <!-- VETERAN -->
+                        <tr>
+                            <td rowspan="4" class="tier-col bg-purple">VETERAN</td>
+                            <td><span class="ilvl-main">279</span><span class="track-text"><span class="c-adv">Adv 5</span> | <span class="c-vet">Vet 1</span></span></td>
+                            <td></td>
+                            <td>Weltboss /<br>Gewölbe</td>
+                            <td></td><td></td>
+                            <td>Schwer</td>
+                            <td>Normal</td>
+                            <td>Tier 5</td>
+                            <td></td>
+                            <td>Tier 1</td>
+                            <td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">282</span><span class="track-text"><span class="c-adv">Adv 6</span> | <span class="c-vet">Vet 2</span></span></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>Tier 6</td>
+                            <td>Tier 4</td>
+                            <td>Tier 2</td>
+                            <td></td><td></td>
+                            <td rowspan="3">Raid Finder / LFR</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">285</span><span class="track-text">Vet 3/6</span></td>
+                            <td></td>
+                            <td>Spitzenkiste</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>Tier 3</td>
+                            <td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">289</span><span class="track-text">Vet 4/6</span></td>
+                            <td>Kriegsmodus<br>(331)</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>Tier 5</td>
+                            <td>Tier 4</td>
+                            <td></td>
+                            <td>Heroisch</td>
+                            <td></td>
+                        </tr>
 
-                <!-- Champion -->
-                <tr>
-                    <td rowspan="4" class="tier-col bg-red">CHAMPION</td>
-                    <td>292</td>
-                    <td>Eroberung (344)</td>
-                    <td>Weltboss (Normal)</td>
-                    <td rowspan="4" class="crafted-col">Funke der Gezeiten</td>
-                    <td>Albtraum</td>
-                    <td>Schwer</td>
-                    <td>Tier 7</td>
-                    <td>Tier 6</td>
-                    <td>Tier 6</td>
-                    <td>Tier 5</td>
-                    <td>Mythisch / M0</td>
-                    <td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>295</td>
-                    <td></td><td></td><td></td><td></td><td>Tier 8-11</td><td>Tier 7</td><td></td><td></td><td>M+2-3</td><td></td><td>Normal</td><td>LFR</td>
-                </tr>
-                <tr>
-                    <td>298</td>
-                    <td></td><td></td><td></td><td></td><td></td><td>Tier 8</td><td></td><td></td><td>M+4</td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>302</td>
-                    <td></td><td></td><td></td><td></td><td></td><td>Tier 8</td><td></td><td></td><td>M+5</td><td>Mythisch</td><td></td><td></td>
-                </tr>
+                        <!-- CHAMPION -->
+                        <tr>
+                            <td rowspan="4" class="tier-col bg-red">CHAMPION</td>
+                            <td><span class="ilvl-main">292</span><span class="track-text"><span class="c-vet">Vet 5</span> | <span class="c-champ">Champ 1</span></span></td>
+                            <td>Eroberung (344)</td>
+                            <td>Weltboss<br>(Normal)</td>
+                            <td rowspan="4" class="italic-text">Funke der<br>Gezeiten (bis 305)</td><td></td>
+                            <td>Albtraum</td>
+                            <td>Schwer</td>
+                            <td>Tier 7</td>
+                            <td>Tier 6</td>                          
+                            <td>Tier 5</td>
+                            <td>Mythisch / M0</td>
+                            <td></td>
+                            <td rowspan="4">Normal</td>
+                            <td>Raid Finder / LFR</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">295</span><span class="track-text"><span class="c-vet">Vet 6</span> | <span class="c-champ">Champ 2</span></span></td>
+                            <td></td><td></td><td></td><td></td><td></td>
+                            <td>Tier 8-11</td>
+                            <td>Tier 7</td>
+                            <td></td>
+                            <td>M+2-3</td>
+                            <td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">298</span><span class="track-text">Champ 3/6</span></td>
+                            <td></td><td></td><td></td><td></td><td></td>
+                            <td>Tier 8</td>
+                            <td></td><td></td>
+                            <td>M+4</td>
+                            <td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">302</span><span class="track-text">Champ 4/6</span></td>
+                            <td></td><td></td><td></td><td></td><td></td>
+                            <td>Tier 8</td>
+                            <td></td><td></td>
+                            <td>M+5</td>
+                            <td>Mythisch</td>
+                            <td></td>
+                        </tr>
 
-                <!-- Held -->
-                <tr>
-                    <td rowspan="4" class="tier-col bg-gold">HELD</td>
-                    <td>305</td>
-                    <td></td>
-                    <td>Weltboss (Heroisch)</td>
-                    <td rowspan="4" class="crafted-col">+80 Heldenwappen</td>
-                    <td>Albtraum</td>
-                    <td>Reise 9 (Tier 11)</td>
-                    <td>Tier 8-11</td>
-                    <td>Tier 8-11</td>
-                    <td>Tier 8-11</td>
-                    <td>Tier 8-11</td>
-                    <td>M+6-7</td>
-                    <td>M+2-3</td>
-                    <td>Heroisch</td>
-                    <td>Normal</td>
-                </tr>
-                <tr>
-                    <td>308</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>M+8-9</td><td>M+4-5</td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>311</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>M+10 oder höher</td><td>M+6</td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>315</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>M+7-9</td><td></td><td></td>
-                </tr>
+                        <!-- HELD -->
+                        <tr>
+                            <td rowspan="4" class="tier-col bg-gold">HELD</td>
+                            <td><span class="ilvl-main">305</span><span class="track-text"><span class="c-champ">Champ 5</span> | <span class="c-hero">Hero 1</span></span></td>
+                            <td></td>
+                            <td>Weltboss<br>(Heroisch)</td>
+                            <td rowspan="4" class="italic-text">+80<br>Heldenwappen (bis 318)</td><td></td><td></td>
+                            <td>Albtraum</td>
+                            <td>Tier 11(Journey 9)</td>
+                            <td>Tier 8-11</td>
+                            <td>Tier 8-11</td>
+                            <td>M+6-7</td>
+                            <td>M+2-3</td>
+                            <td rowspan="4">Heroisch</td>
+                            <td>Normal</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">308</span><span class="track-text"><span class="c-champ">Champ 6</span> | <span class="c-hero">Hero 2</span></span></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>M+8-9</td>
+                            <td>M+4-5</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">311</span><span class="track-text">Hero 3/6</span></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>M+10+</td>
+                            <td>M+6</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">315</span><span class="track-text">Hero 4/6</span></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>M+7-9</td>
+                            <td></td>
+                        </tr>
 
-                <!-- Mythos -->
-                <tr>
-                    <td rowspan="9" class="tier-col bg-mythic">MYTHIC</td>
-                    <td>318</td>
-                    <td></td>
-                    <td>Weltboss (Mythisch)</td>
-                    <td rowspan="6" class="crafted-col">+80 Mythoswappen</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>M+10 oder höher</td><td></td><td>Heroisch</td>
-                </tr>
-                <tr><td>321</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr>
-                    <td>324</td>
-                    <td></td><td></td><td>Aufgestiegene Helden-Herstellung</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>328</td>
-                    <td></td><td></td><td>Aufgestiegener Held</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr><td>331</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr>
-                    <td>334</td>
-                    <td></td><td></td><td>Aufgestiegene Mythos-Herstellung</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Größtenteils Mythisch</td><td></td>
-                </tr>
-                <tr><td>337</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr>
-                    <td>341</td>
-                    <td></td><td></td><td>Aufgestiegener Mythos</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td>344</td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Letzte 2 Boss</td><td>Letzte 2 Boss</td>
-                </tr>
-            </tbody>
-        </table>
-    
+                        <!-- MYTHOS -->
+                        <tr>
+                            <td rowspan="9" class="tier-col bg-mythic">MYTHOS</td>
+                            <td><span class="ilvl-main">318</span><span class="track-text"><span class="c-hero">Hero 5</span> | <span class="c-myth">Myth 1</span></span></td>
+                            <td></td>
+                            <td>Weltboss<br>(Mythisch)</td>
+                            <td rowspan="5" class="italic-text">+80<br>Mythoswappen</td>
+                            <td></td>
+                            <td></td>
+                            <td></td><td></td><td></td><td></td><td></td>
+                            <td>M+10+</td>
+                            <td rowspan="3">(Meiste) Mythisch</td>
+                            <td>Heroisch</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">321</span><span class="track-text"><span class="c-hero">Hero 6</span> | <span class="c-myth">Myth 2</span></span></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">324</span><span class="track-text">Myth 3/6</span></td>
+                            <td></td><td></td><td style="color: #ff6b6b;">Ascended<br>Hero Craft</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">328</span><span class="track-text">Myth 4/6</span></td>
+                            <td></td><td></td><td style="color: #ff6b6b;">Ascended<br>Hero</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">331</span><span class="track-text">Myth 5/6</span></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">334</span><span class="track-text">Myth 6/6</span></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>(Meiste) Mythisch</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">337</span><span class="track-text">Myth 7/6</span></td>
+                            <td></td><td></td>
+                            <td></td>
+                            <td style="color: #ff6b6b;">Ascended<br>Myth Craft</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">341</span><span class="track-text">Myth 8/6</span></td>
+                            <td></td><td></td><td></td>
+							<td style="color: #ff6b6b;">Ascended<br>Myth</td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td><span class="ilvl-main">344</span><span class="track-text">Myth 9/6</span></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>Letzte 2<br>Mythisch Bosse</td>
+                            <td>Letzte 2<br>Mythisch Bosse</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         
         <hr style="border-color: #333; margin: 40px 0;">
@@ -764,7 +751,6 @@
             var megaView = document.getElementById('mega-view');
             
             if (megaView.style.display === 'none') {
-                // Switch to Mega View
                 megaView.style.display = 'block';
                 simpleView.style.display = 'none';
                 this.innerHTML = '⚔️ Zurück zu nur Raid & M+';
@@ -772,7 +758,6 @@
                 this.style.borderColor = '#ff6666';
                 this.style.boxShadow = '0 4px 15px rgba(255, 76, 76, 0.4)';
             } else {
-                // Switch to Simple View
                 megaView.style.display = 'none';
                 simpleView.style.display = 'block';
                 this.innerHTML = '📊 Vollständige Tabelle anzeigen';
