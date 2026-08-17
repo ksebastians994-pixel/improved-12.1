@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nek'zali Guide - Improved Saison 2</title>
+    <style>
+        :root {
+            --bg-main: #0f1115;
+            --bg-card: #1c1f26;
+            --text-main: #d1d5db;
+            --accent-gold: #ffd100;
+            --accent-orange: #ff8000;
+            --border-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .header-section {
+            text-align: center;
+            border-bottom: 2px solid var(--accent-orange);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: linear-gradient(135deg, #333, #111);
+            color: var(--accent-gold);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #555;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            background: linear-gradient(135deg, #444, #222);
+            border-color: var(--accent-gold);
+        }
+
+        /* --- MECHANIC ROWS (Text + Video) --- */
+        .mechanic-row {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        /* Abwechselndes Layout: Jede zweite Reihe hat das Video links */
+        .mechanic-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .mechanic-text {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .mechanic-text h3 {
+            color: var(--accent-orange);
+            margin-top: 0;
+            font-size: 1.5em;
+            border-bottom: 1px dashed #555;
+            padding-bottom: 10px;
+        }
+
+        .mechanic-video-container {
+            flex: 1;
+            position: relative;
+            background-color: #000;
+            border-left: 1px solid #333; /* Trennlinie zum Text */
+        }
+
+        .mechanic-row:nth-child(even) .mechanic-video-container {
+            border-left: none;
+            border-right: 1px solid #333;
+        }
+
+        .mechanic-video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        /* Play-Icon Overlay, das beim Hovern verschwindet */
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            color: rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .mechanic-video-container:hover video {
+            opacity: 1;
+        }
+
+        .mechanic-video-container:hover .play-overlay {
+            opacity: 0;
+        }
+
+        @media (max-width: 900px) {
+            .mechanic-row, .mechanic-row:nth-child(even) {
+                flex-direction: column;
+            }
+            .mechanic-video-container {
+                width: 100%;
+                border: none !important;
+                border-top: 1px solid #333 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="btn-back">⬅ Zurück zur Übersicht</a>
+        
+        <div class="header-section">
+            <h1>Nek'zali</h1>
+            <p>Boss 1 - The Venomous Abyss</p>
+        </div>
+
+        <!-- Mechanik 1 -->
+        <div class="mechanic-row">
+            <div class="mechanic-text">
+                <h3>Oblivion Beam (Der Pull)</h3>
+                <p>Nek'zali feuert einen dicken Laser ab. Sobald der Beam anvisiert ist, sofort aus der Frontalen rausbewegen! Melees müssen hier besonders aufpassen, dass sie den Boss nicht ungewollt in die Gruppe drehen.</p>
+                <ul>
+                    <li>Frontal ausweichen</li>
+                    <li>Nicht bei den Tanks stehen</li>
+                </ul>
+            </div>
+            <div class="mechanic-video-container">
+                <!-- HIER DEINEN GITHUB VIDEO LINK EINTRAGEN -->
+                <video src="HIER_LINK_ZU_DEINEM_GITHUB_VIDEO_1.mp4" muted loop playsinline class="hover-vid"></video>
+                <div class="play-overlay">▶</div>
+            </div>
+        </div>
+
+        <!-- Mechanik 2 -->
+        <div class="mechanic-row">
+            <div class="mechanic-text">
+                <h3>Void Orbs (Soaken)</h3>
+                <p>Kugeln spawnen im Raum und müssen zwingend von den Spielern abgefangen (gesoakt) werden, bevor sie den Rand erreichen. Wenn eine Kugel durchgeht, gibt es massiven Raid-Schaden.</p>
+                <ul>
+                    <li>Mobilität aufheben für schnelle Kugeln</li>
+                    <li>Absprache bei überlappenden Spawns</li>
+                </ul>
+            </div>
+            <div class="mechanic-video-container">
+                <!-- HIER DEINEN GITHUB VIDEO LINK EINTRAGEN -->
+                <video src="HIER_LINK_ZU_DEINEM_GITHUB_VIDEO_2.mp4" muted loop playsinline class="hover-vid"></video>
+                <div class="play-overlay">▶</div>
+            </div>
+        </div>
+
+        <!-- Mechanik 3 -->
+        <div class="mechanic-row">
+            <div class="mechanic-text">
+                <h3>Tank Buster & Adds</h3>
+                <p>Ein harter Tank-Hit, der einen Debuff hinterlässt (Tank-Swap erforderlich). Gleichzeitig spawnen kleine Adds, die sofort zusammengezogen und weggecleavt werden müssen.</p>
+                <ul>
+                    <li>Tanks: Spotten nach dem Debuff</li>
+                    <li>DDs: CC und Interrupts für die Adds einteilen</li>
+                </ul>
+            </div>
+            <div class="mechanic-video-container">
+                <!-- HIER DEINEN GITHUB VIDEO LINK EINTRAGEN -->
+                <video src="HIER_LINK_ZU_DEINEM_GITHUB_VIDEO_3.mp4" muted loop playsinline class="hover-vid"></video>
+                <div class="play-overlay">▶</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript für den Hover-Effekt -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const videos = document.querySelectorAll(".hover-vid");
+
+            videos.forEach(video => {
+                // Wenn die Maus reingeht -> Video abspielen
+                video.addEventListener("mouseenter", () => {
+                    video.play().catch(error => {
+                        console.log("Autoplay blockiert (oft wegen Browser-Settings):", error);
+                    });
+                });
+
+                // Wenn die Maus rausgeht -> Video pausieren
+                video.addEventListener("mouseleave", () => {
+                    video.pause();
+                    // Optional: Auskommentieren, wenn das Video beim Rausgehen wieder von vorne starten soll
+                    // video.currentTime = 0; 
+                });
+            });
+        });
+    </script>
+</body>
+</html>
