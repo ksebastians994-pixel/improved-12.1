@@ -372,7 +372,6 @@
         <p>Hier sind die direkten Links zu den Taktiken für jeden Boss (Ready-Check-Pull: YouTube):</p>
         
         <div class="video-links">
-            <!-- (Video Code bleibt identisch - hier gekürzt zur Übersichtlichkeit, im echten Code natürlich einfügen) -->
             <div class="boss-card" style="background-image: url('https://www.goldgoblin.net/wp-content/uploads/2026/06/nekzali.webp');">
                 <div class="boss-card-content">
                     <div class="boss-card-header">Nek'zali</div>
@@ -527,6 +526,10 @@
                     <div class="check-item">
                         <input type="checkbox" id="pre-5">
                         <label for="pre-5">"?" Azta’rec legen für 30 uncapped Hero Crests (und als Übung für nächste Woche).</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="pre-6">
+                        <label for="pre-6">Tiefen (Delves) laufen für die World Quest Slots (falls du keine Splits machst).</label>
                     </div>
                     <div class="check-item">
                         <input type="checkbox" id="pre-7">
@@ -1088,6 +1091,7 @@
     </div>
 
     <script>
+        // Toggle-Logik für die große und kleine Tabelle
         document.getElementById('toggleViewBtn').addEventListener('click', function() {
             var simpleView = document.getElementById('simple-view');
             var megaView = document.getElementById('mega-view');
@@ -1107,6 +1111,24 @@
                 this.style.borderColor = '#3399ff';
                 this.style.boxShadow = '0 4px 15px rgba(0, 112, 221, 0.4)';
             }
+        });
+
+        // Local Storage Skript für die Checklisten
+        document.addEventListener("DOMContentLoaded", () => {
+            const checkboxes = document.querySelectorAll('.checklist-wrapper input[type="checkbox"]');
+
+            checkboxes.forEach(box => {
+                // 1. Gespeicherten Zustand beim Laden abrufen
+                const savedState = localStorage.getItem('s2_checklist_' + box.id);
+                if (savedState === 'true') {
+                    box.checked = true;
+                }
+
+                // 2. Zustand bei jedem Klick speichern
+                box.addEventListener('change', (e) => {
+                    localStorage.setItem('s2_checklist_' + box.id, e.target.checked);
+                });
+            });
         });
     </script>
 </body>
