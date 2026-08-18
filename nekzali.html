@@ -147,25 +147,24 @@
             gap: 25px;
         }
 
-        /* Spalte 1: Icons */
+        /* Spalte 1: Icons / Tooltips */
         .mech-icon {
-            width: 100px;
+            width: 250px; /* Deutlich breiter, damit Tooltip-Text lesbar ist */
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             border-right: 1px solid #333;
-            padding-right: 20px;
+            padding-right: 25px;
         }
 
         .mech-icon img {
-            width: 70px;
-            height: 70px;
-            border-radius: 8px;
-            border: 2px solid var(--accent-orange);
-            object-fit: cover;
+            width: 100%; /* Passt sich der Spaltenbreite an */
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid var(--accent-orange);
             box-shadow: 0 2px 8px rgba(255, 128, 0, 0.3);
         }
 
@@ -259,7 +258,11 @@
                 padding-right: 0;
                 padding-bottom: 20px;
                 width: 100%;
-                flex-direction: row;
+                flex-direction: column; /* Auch auf Mobile untereinander lassen */
+                align-items: center;
+            }
+            .mech-icon img {
+                max-width: 300px; /* Auf Mobile nicht gigantisch groß werden lassen */
             }
             .mech-text ul {
                 padding-left: 0;
@@ -346,8 +349,9 @@
                     <li>Dürfen nicht in die Mitte! Sonst Raid AoE und stackender Debuff</li>
                 </ul>
             </div>
-            <div class="mech-video no-video">
-                <span>Kein Clip verfügbar</span>
+            <div class="mech-video">
+                <video src="img/nekzali/v2_adds.mp4" muted loop playsinline class="hover-vid"></video>
+                <div class="play-overlay">▶</div>
             </div>
         </div>
 
