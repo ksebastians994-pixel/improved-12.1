@@ -135,69 +135,43 @@
             font-style: italic;
         }
 
-        /* --- MECHANIC ROWS --- */
-        .mechanic-row {
-            display: flex;
-            align-items: stretch;
+        /* --- MECHANIC CARDS (Bild links, Video rechts, Text unten) --- */
+        .mechanic-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid #333;
             border-radius: 8px;
-            margin-bottom: 25px;
-            padding: 20px;
-            gap: 25px;
+            margin-bottom: 40px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        /* Spalte 1: Icons / Tooltips */
+        .mech-media {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        /* Spalte 1: Icons / Tooltips (Links) */
         .mech-icon {
-            width: 250px; /* Deutlich breiter, damit Tooltip-Text lesbar ist */
-            flex-shrink: 0;
+            flex: 1; /* Nimmt 1 Teil des Platzes ein */
+            max-width: 450px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             gap: 15px;
-            border-right: 1px solid #333;
-            padding-right: 25px;
         }
 
         .mech-icon img {
-            width: 100%; /* Passt sich der Spaltenbreite an */
+            width: 100%;
             height: auto;
             border-radius: 6px;
             border: 1px solid var(--accent-orange);
-            box-shadow: 0 2px 8px rgba(255, 128, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 128, 0, 0.2);
         }
 
-        /* Spalte 2: Text */
-        .mech-text {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .mech-text h3 {
-            color: var(--accent-purple);
-            margin-top: 0;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .mech-text ul {
-            margin: 0;
-            padding-left: 20px;
-            color: #ddd;
-            font-size: 1.1em;
-        }
-        
-        .mech-text li {
-            margin-bottom: 8px;
-        }
-
-        /* Spalte 3: Video */
+        /* Spalte 2: Video (Rechts) */
         .mech-video {
-            width: 400px;
-            flex-shrink: 0;
+            flex: 1.5; /* Nimmt 1.5 Teile ein (Video ist etwas größer als Bild) */
             position: relative;
             background-color: #000;
             border-radius: 8px;
@@ -206,6 +180,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            aspect-ratio: 16/9;
         }
 
         .mech-video video {
@@ -223,7 +199,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 3em;
+            font-size: 4em;
             color: rgba(255, 255, 255, 0.5);
             pointer-events: none;
             transition: opacity 0.2s;
@@ -246,31 +222,39 @@
             text-align: center;
         }
 
-        @media (max-width: 1000px) {
-            .mechanic-row {
+        /* Unterer Bereich: Text */
+        .mech-text {
+            border-top: 1px dashed #555;
+            padding-top: 25px;
+        }
+
+        .mech-text h3 {
+            color: var(--accent-purple);
+            margin-top: 0;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .mech-text ul {
+            margin: 0;
+            padding-left: 25px;
+            color: #ddd;
+            font-size: 1.2em;
+        }
+        
+        .mech-text li {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .mech-media {
                 flex-direction: column;
-                align-items: center;
-                text-align: center;
+                gap: 20px;
             }
-            .mech-icon {
-                border-right: none;
-                border-bottom: 1px solid #333;
-                padding-right: 0;
-                padding-bottom: 20px;
+            .mech-icon, .mech-video {
+                max-width: 100%;
                 width: 100%;
-                flex-direction: column; /* Auch auf Mobile untereinander lassen */
-                align-items: center;
-            }
-            .mech-icon img {
-                max-width: 300px; /* Auf Mobile nicht gigantisch groß werden lassen */
-            }
-            .mech-text ul {
-                padding-left: 0;
-                list-style-position: inside;
-            }
-            .mech-video {
-                width: 100%;
-                aspect-ratio: 16/9;
+                flex: auto;
             }
         }
     </style>
@@ -300,9 +284,16 @@
         <!-- ================= PHASE 1 ================= -->
         <h2 class="phase-title">Phase 1</h2>
 
-        <div class="mechanic-row">
-            <div class="mech-icon">
-                <img src="img/nekzali/ab3v.png" alt="Essence Rend">
+        <!-- Mechanik 1 -->
+        <div class="mechanic-card">
+            <div class="mech-media">
+                <div class="mech-icon">
+                    <img src="img/nekzali/ab3v.png" alt="Essence Rend">
+                </div>
+                <div class="mech-video">
+                    <video src="img/nekzali/v1_essenceRend.mp4" muted loop playsinline class="hover-vid"></video>
+                    <div class="play-overlay">▶</div>
+                </div>
             </div>
             <div class="mech-text">
                 <h3>Essence Rend (Dispell)</h3>
@@ -312,16 +303,19 @@
                     <li>Hinterlässt Void</li>
                 </ul>
             </div>
-            <div class="mech-video">
-                <video src="img/nekzali/v1_essenceRend.mp4" muted loop playsinline class="hover-vid"></video>
-                <div class="play-overlay">▶</div>
-            </div>
         </div>
 
-        <div class="mechanic-row">
-            <div class="mech-icon">
-                <img src="img/nekzali/ab4_possessionBarrage.png" alt="Possession Barrage">
-                <img src="img/nekzali/ab5_hollowed.png" alt="Hallowed Stacks">
+        <!-- Mechanik 2 -->
+        <div class="mechanic-card">
+            <div class="mech-media">
+                <div class="mech-icon">
+                    <img src="img/nekzali/ab4_possessionBarrage.png" alt="Possession Barrage">
+                    <img src="img/nekzali/ab5_hollowed.png" alt="Hallowed Stacks">
+                </div>
+                <div class="mech-video">
+                    <video src="img/nekzali/v2_possessionbar.mp4" muted loop playsinline class="hover-vid"></video>
+                    <div class="play-overlay">▶</div>
+                </div>
             </div>
             <div class="mech-text">
                 <h3>Possession Barrage (Tank falloff damage)</h3>
@@ -331,15 +325,17 @@
                     <li><strong>Tank Swap!</strong></li>
                 </ul>
             </div>
-            <div class="mech-video">
-                <video src="img/nekzali/v2_possessionbar.mp4" muted loop playsinline class="hover-vid"></video>
-                <div class="play-overlay">▶</div>
-            </div>
         </div>
 
-        <div class="mechanic-row">
-            <div class="mech-icon">
-                <img src="img/nekzali/raisedadd.png" alt="Raised Amani">
+        <!-- Mechanik 3 -->
+        <div class="mechanic-card">
+            <div class="mech-media">
+                <div class="mech-icon">
+                    <img src="img/nekzali/raisedadd.png" alt="Raised Amani">
+                </div>
+                <div class="mech-video no-video">
+                    <span>Kein Clip verfügbar</span>
+                </div>
             </div>
             <div class="mech-text">
                 <h3>Raised Amani (Adds killen)</h3>
@@ -349,18 +345,21 @@
                     <li>Dürfen nicht in die Mitte! Sonst Raid AoE und stackender Debuff</li>
                 </ul>
             </div>
-            <div class="mech-video">
-                <video src="img/nekzali/v2_adds.mp4" muted loop playsinline class="hover-vid"></video>
-                <div class="play-overlay">▶</div>
-            </div>
         </div>
 
         <!-- ================= INTERMISSION ================= -->
         <h2 class="phase-title">Intermission</h2>
 
-        <div class="mechanic-row">
-            <div class="mech-icon">
-                <img src="img/nekzali/hungpyre.png" alt="Hungering Pyre">
+        <!-- Mechanik 4 -->
+        <div class="mechanic-card">
+            <div class="mech-media">
+                <div class="mech-icon">
+                    <img src="img/nekzali/hungpyre.png" alt="Hungering Pyre">
+                </div>
+                <div class="mech-video">
+                    <video src="img/nekzali/v3_soak.mp4" muted loop playsinline class="hover-vid"></video>
+                    <div class="play-overlay">▶</div>
+                </div>
             </div>
             <div class="mech-text">
                 <h3>Hungering Pyre (50:50 soak)</h3>
@@ -368,15 +367,18 @@
                     <li>1. Hälfte vom Raid muss hier soaken</li>
                 </ul>
             </div>
-            <div class="mech-video">
-                <video src="img/nekzali/v3_soak.mp4" muted loop playsinline class="hover-vid"></video>
-                <div class="play-overlay">▶</div>
-            </div>
         </div>
 
-        <div class="mechanic-row">
-            <div class="mech-icon">
-                <img src="img/nekzali/slithflame.png" alt="Slithering Flame">
+        <!-- Mechanik 5 -->
+        <div class="mechanic-card">
+            <div class="mech-media">
+                <div class="mech-icon">
+                    <img src="img/nekzali/slithflame.png" alt="Slithering Flame">
+                </div>
+                <div class="mech-video">
+                    <video src="img/nekzali/v5_addsclean.mp4" muted loop playsinline class="hover-vid"></video>
+                    <div class="play-overlay">▶</div>
+                </div>
             </div>
             <div class="mech-text">
                 <h3>Slithering Flame (Clear adds)</h3>
@@ -385,15 +387,17 @@
                     <li>Damit die Adds aus P1 clearen!</li>
                 </ul>
             </div>
-            <div class="mech-video">
-                <video src="img/nekzali/v5_addsclean.mp4" muted loop playsinline class="hover-vid"></video>
-                <div class="play-overlay">▶</div>
-            </div>
         </div>
 
-        <div class="mechanic-row">
-            <div class="mech-icon">
-                <img src="img/nekzali/ab6_restoll.png" alt="Residual Toll">
+        <!-- Mechanik 6 -->
+        <div class="mechanic-card">
+            <div class="mech-media">
+                <div class="mech-icon">
+                    <img src="img/nekzali/ab6_restoll.png" alt="Residual Toll">
+                </div>
+                <div class="mech-video no-video">
+                    <span>Kein Clip verfügbar</span>
+                </div>
             </div>
             <div class="mech-text">
                 <h3>Residual Toll (Dmg debuff)</h3>
@@ -401,18 +405,22 @@
                     <li>Harter Raid-Schaden, strikt gegenheilen</li>
                 </ul>
             </div>
-            <div class="mech-video no-video">
-                <span>Kein Clip verfügbar</span>
-            </div>
         </div>
 
         <!-- ================= PHASE 2 ================= -->
         <h2 class="phase-title">Phase 2</h2>
         <p class="phase-note">Ablauf wie in P1, <strong>zusätzlich:</strong></p>
 
-        <div class="mechanic-row">
-            <div class="mech-icon">
-                <img src="img/nekzali/ab7_invoke.png" alt="Invoke">
+        <!-- Mechanik 7 -->
+        <div class="mechanic-card">
+            <div class="mech-media">
+                <div class="mech-icon">
+                    <img src="img/nekzali/ab7_invoke.png" alt="Invoke">
+                </div>
+                <div class="mech-video">
+                    <video src="img/nekzali/v6_invokevoid.mp4" muted loop playsinline class="hover-vid"></video>
+                    <div class="play-overlay">▶</div>
+                </div>
             </div>
             <div class="mech-text">
                 <h3>Raid AoE (Invoke)</h3>
@@ -420,10 +428,6 @@
                     <li>Harter Schaden, gegenheilen</li>
                     <li>Voids bewegen sich durch den ganzen Raum (Ausweichen!)</li>
                 </ul>
-            </div>
-            <div class="mech-video">
-                <video src="img/nekzali/v6_invokevoid.mp4" muted loop playsinline class="hover-vid"></video>
-                <div class="play-overlay">▶</div>
             </div>
         </div>
 
